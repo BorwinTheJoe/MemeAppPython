@@ -1,2 +1,3 @@
 from .user import User
-from .userDTO import UserDTO
+from .UserDTO import UserDTO
+from .RegisterDTO import RegisterDTO
