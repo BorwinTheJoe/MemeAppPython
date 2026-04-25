@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from src.MemeApp.models import UserDTO
+from src.models import UserDTO
 
 class AuthService(BaseModel):
     @staticmethod
