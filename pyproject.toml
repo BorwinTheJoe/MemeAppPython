@@ -1,2 +1,25 @@
+[project]
+name = "memeapppython"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]==0.135.1",
+    "gunicorn>=26.0.0",
+    "orjson>=3.11.9",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
+    "pyjwt>=2.12.1",
+    "sqlmodel>=0.0.38",
+    "uvicorn[standard]==0.35.0",
+]
+[dependency-groups]
+dev = [
+    "ruff>=0.15.13",
+]
+
 [tool.fastapi]
-entrypoint = "main:app"
+entrypoint = "src.main:app"
+
+

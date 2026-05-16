@@ -1,5 +1,8 @@
 from pydantic import BaseModel
-from src.models import UserDTO, RegisterDTO
+from src.models import UserDTO, RegisterDTO, User
+from src.schemas import UserModel
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 class AuthService(BaseModel):
     @staticmethod
@@ -29,3 +32,22 @@ class AuthService(BaseModel):
             output_str = "Brak nazwy użytkownika\n"
 
         return output_str
+
+    @staticmethod
+    def create_user(user: User, db: Session):
+        db_user = UserModel(
+            uuid=user.uuid,
+            username=user.username,
+            passwordHash=user.passwordHash,
+            postList=user.postList,
+            registrationDate=user.registrationDate
+        )
+
+        db.add(db_user)
+        db.commit()
+        db.refresh(db_user)
+        return db_user
+
+    @staticmethod
+    def get_users(db: Session):
+        return db.scalars(select(UserModel)).all()

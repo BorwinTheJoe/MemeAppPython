@@ -5,7 +5,8 @@
 
 from fastapi import FastAPI
 from src.controllers import AuthRouter
+from src.lifecycle import lifespan
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 app.include_router(AuthRouter)
